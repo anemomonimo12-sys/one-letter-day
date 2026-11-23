@@ -12,14 +12,25 @@ for behind the letter Z.
 
 import os
 
-LETTER = "Z"
+# The day, in one word: zero sleep, body on autopilot, brain offline.
+WORD = "zombie"
+# The letter is the word's first letter -- and Z is the sleep glyph (Zzz),
+# so the letter and the word behind it point at the same picture.
+LETTER = WORD[0].upper()
 OUTPUT_PATH = "/output/entry.txt"
 
 
-def main() -> None:
+def write_entry(letter: str) -> None:
+    """Write exactly one letter, nothing else, to the entry file."""
+    if len(letter) != 1 or not letter.isalpha():
+        raise ValueError("entry must be exactly one letter")
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
     with open(OUTPUT_PATH, "w", encoding="utf-8", newline="") as f:
-        f.write(LETTER)
+        f.write(letter)
+
+
+def main() -> None:
+    write_entry(LETTER)
 
 
 if __name__ == "__main__":
