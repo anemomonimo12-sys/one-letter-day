@@ -14,9 +14,21 @@ import os
 
 # The day, in one word: zero sleep, body on autopilot, brain offline.
 WORD = "zombie"
-# The letter is the word's first letter -- and Z is the sleep glyph (Zzz),
-# so the letter and the word behind it point at the same picture.
-LETTER = WORD[0].upper()
+
+
+def letter_for_day(word: str) -> str:
+    """Return the letter that stands for the day's word.
+
+    The letter is the word's first letter -- and Z is the sleep glyph
+    (Zzz), so the letter and the word behind it point at the same picture.
+    """
+    if not word or not word[0].isalpha():
+        raise ValueError("the day's word must start with a letter")
+    return word[0].upper()
+
+
+# The letter is the word's first letter.
+LETTER = letter_for_day(WORD)
 OUTPUT_PATH = "/output/entry.txt"
 
 
